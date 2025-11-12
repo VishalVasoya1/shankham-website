@@ -1,0 +1,51 @@
+---
+title: "Building Scalable Real-Time Systems with WebSockets"
+date: "2024-10-28"
+readTime: "8 min read"
+author: "Sarah Chen"
+excerpt: "Learn how we built a WebSocket infrastructure that handles millions of concurrent connections with low latency and high reliability."
+tags: ["WebSockets", "Architecture", "Node.js", "Redis"]
+---
+## Introduction
+
+Handling millions of concurrent WebSocket connections efficiently is not just a technical challenge—it's an architectural one. In this post, we'll explore how we built a **scalable real-time system** that powers live updates, chats, and dashboards across our platform.
+
+When we started, traditional HTTP polling was becoming unsustainable as our user base grew. We needed an event-driven solution with low latency and high concurrency. Here's what we built.
+
+## The Challenge
+
+Traditional HTTP polling quickly became unsustainable as our user base grew. We needed an event-driven solution with low latency and high concurrency.
+
+### Key Requirements
+
+- Support for **10M+ concurrent connections**
+- Sub-100ms message delivery latency
+- Horizontal scalability across multiple regions
+- Graceful failover and recovery
+- Efficient resource utilization
+
+## Our Architecture
+
+We designed a multi-layered architecture that separates concerns and scales independently:
+
+### 1. Load Balancing Layer
+
+**NGINX with sticky sessions** ensures that clients maintain their connection to the same server during their session. This is critical for WebSocket connections which are stateful by nature.
+
+```nginx
+upstream websocket_backend {
+    ip_hash;
+    server ws1.example.com:3000;
+    server ws2.example.com:3000;
+    server ws3.example.com:3000;
+}
+
+server {
+    location /ws {
+        proxy_pass http://websocket_backend;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}
+```
