@@ -55,15 +55,17 @@ const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-screen flex flex-col items-center justify-center px-4 sm:px-6 md:px-10 lg:px-16 overflow-hidden">
-        <div
-          className="absolute inset-0 z-0 pointer-events-none"
-          style={{
-            backgroundImage: `
-       radial-gradient(circle at center, #c4b5fd, transparent)
-     `,
-          }}
-        />
+    <div className="relative w-full h-screen flex flex-col items-center text-gray-100 justify-center px-4 sm:px-6 md:px-10 lg:px-16 overflow-hidden">
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: `url("/background.png")`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          // filter: "blur(4px)", // Custom blur amount in pixels
+        }}
+      />
 
       <div className="max-w-[1100px] w-full mx-auto relative z-10 mt-32">
         {/* Main Heading */}
@@ -72,8 +74,8 @@ const HeroSection: React.FC = () => {
             className={`text-4xl lg:text-7xl leading-tight md:leading-[1.15] tracking-tight px-2 ${editorial_new.className} text-center`}
           >
             We help{" "}
-            <span className="relative inline-block min-w-[280px] md:min-w-0">
-              <span ref={textRef} className="inline-block">
+            <span className="relative inline-block">
+              <span ref={textRef} className="inline-block whitespace-nowrap">
                 {words[wordIndex]}
               </span>
             </span>
@@ -84,7 +86,7 @@ const HeroSection: React.FC = () => {
 
         {/* Description */}
         <div className="max-w-[620px] mx-auto text-center mb-6 md:mb-8 px-4">
-          <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-gray-100 leading-relaxed">
             Shankham Technology delivers intelligent solutions through
             AI-powered platforms, next-gen mobile apps, immersive gaming, and
             resilient cloud deployments.
@@ -95,20 +97,18 @@ const HeroSection: React.FC = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 px-4">
           <Button
             size="lg"
-            className="w-full sm:w-auto h-11 sm:h-12 px-6 sm:px-7 text-sm font-medium gap-2 group relative overflow-hidden hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
+            className="w-full text-zinc-900 sm:w-auto h-11 sm:h-12 px-6 sm:px-7 text-sm font-medium gap-2 group"
           >
-            <span className="relative z-10">Start a Project</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 relative z-10" />
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/10 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+            <span className="relative z-10 text-zinc-100">Start a Project</span>
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 relative z-10 text-zinc-100" />
           </Button>
 
           <Button
             variant="outline"
             size="lg"
-            className="w-full sm:w-auto h-11 sm:h-12 px-6 sm:px-7 text-sm font-medium gap-2 group"
+            className="w-full text-zinc-900 sm:w-auto h-11 sm:h-12 px-6 sm:px-7 text-sm font-medium gap-2 group"
           >
             <span>Book a Call</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Button>
         </div>
       </div>

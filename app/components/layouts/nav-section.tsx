@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const NavSection = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +47,17 @@ const NavSection = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <a href="/" className="flex items-center gap-2">
-              <span className="text-2xl font-black">Shankham</span>
+              <span
+                className={`text-2xl font-black ${
+                  homePath
+                    ? isScrolled
+                      ? "text-black"
+                      : "text-white"
+                    : "text-black"
+                }`}
+              >
+                Shankham
+              </span>
             </a>
 
             {/* Desktop Navigation */}
@@ -77,7 +89,13 @@ const NavSection = () => {
             {/* CTA Button */}
             <a
               href="/contact"
-              className="flex bg-gray-900 text-white items-center gap-2 px-6 py-2.5 rounded-full transition-all duration-300 font-medium text-sm group hover:bg-gray-800"
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-full transition-all duration-300 font-medium text-sm group ${
+                homePath
+                  ? isScrolled
+                    ? "bg-primary text-zinc-100"
+                    : "bg-secondary"
+                  : "bg-zinc-800 text-zinc-100"
+              }`}
             >
               <span className="relative z-10">Let's Talk!</span>
               <svg
@@ -104,6 +122,8 @@ const NavSection = () => {
           homePath
             ? isScrolled
               ? "bg-white/95 backdrop-blur-md shadow-sm"
+              : isOpen
+              ? "bg-white"
               : "bg-transparent"
             : "bg-white/95 backdrop-blur-md shadow-sm"
         }`}
@@ -111,14 +131,34 @@ const NavSection = () => {
         {/* Mobile Header */}
         <div className="px-6 py-4 flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="text-2xl font-black">
+          <Link
+            href="/"
+            className={`text-2xl font-black ${
+              homePath
+                ? isScrolled
+                  ? "text-black"
+                  : isOpen
+                  ? "text-black"
+                  : "text-white"
+                : "text-black"
+            }`}
+          >
             Shankham
-          </a>
+          </Link>
 
           {/* Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="relative w-10 h-10 flex items-center justify-center transition-all duration-500 z-50"
+            className={`relative w-10 h-10 flex items-center justify-center transition-all duration-500 z-50 
+              ${
+                homePath
+                  ? isScrolled
+                    ? "text-black"
+                    : isOpen
+                    ? "text-black"
+                    : "text-white"
+                  : "text-black"
+              } `}
           >
             <div className="relative w-6 h-6">
               {isOpen ? (
@@ -149,12 +189,12 @@ const NavSection = () => {
               ))}
 
               {/* CTA Button */}
-              <button
-                className="w-full mt-8 px-6 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all duration-300 font-medium text-lg"
+              <Button
+                className={`w-full mt-8 px-6 py-3  rounded-full  transition-all duration-300 font-medium text-lg  `}
                 onClick={() => setIsOpen(false)}
               >
                 Let's Talk!
-              </button>
+              </Button>
             </div>
           </div>
         )}

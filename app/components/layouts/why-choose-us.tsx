@@ -132,10 +132,10 @@ const WhyChooseUs: React.FC = () => {
     >
       <div className="grid lg:grid-cols-[1fr_1.7fr] items-start gap-8 lg:gap-12 xl:gap-20 pt-8 sm:pt-12 lg:pt-16">
         {/* Header */}
-        <div className=" lg:sticky lg:top-24">
+        <div className="lg:sticky lg:top-24">
           <h2
             ref={headerRef}
-            className="text-5xl md:text-6xl font-bold tracking-tight text-foreground leading-[1.1] overflow-hidden text-center lg:text-left"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground leading-[1.1] overflow-hidden text-center lg:text-left"
           >
             <span className="block line">Why partner</span>
             <span className="block line">with us?</span>
@@ -154,13 +154,13 @@ const WhyChooseUs: React.FC = () => {
                 ref={(el) => {
                   cardsRef.current[index] = el;
                 }}
-                className="relative "
+                className="relative"
               >
                 {/* Separator between items */}
                 <div className="diff-separator absolute top-0 left-0 w-full h-[1px] bg-border origin-left"></div>
 
                 {/* Content */}
-                <div className="relative flex flex-col sm:flex-row items-start gap-4 sm:gap-6 md:gap-8 py-6 sm:py-8">
+                <div className="relative flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 md:gap-8 py-6 sm:py-8">
                   <div className="shrink-0">
                     <span className="diff-number block text-primary text-2xl sm:text-2xl lg:text-3xl font-black">
                       {item.number}

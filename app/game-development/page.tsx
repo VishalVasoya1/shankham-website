@@ -45,7 +45,7 @@ export default function GameDevelopment() {
 
       setCurrentGameIndex(gameIndex);
     });
-  }, [api]);
+  }, [api]);    
 
   const handleCTAClick = () => {
     console.log("CTA button clicked - start game project flow");

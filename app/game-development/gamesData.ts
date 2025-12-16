@@ -67,4 +67,41 @@ export const games = [
       "https://res.cloudinary.com/dpavrdqdc/image/upload/v1762933018/Image_Sequence_013_0000_bmlib9.jpg",
     ],
   },
+  {
+    id: 3,
+    title: "Gun Simulator",
+    description:
+      "A realistic gun simulation app featuring lifelike sound effects, animations, and haptic feedback for an immersive shooting experience",
+    category: "Simulation/Shooter",
+    video:
+      "https://res.cloudinary.com/dpavrdqdc/video/upload/v1763014887/Movie_004_xfhety.mp4",
+    images: [
+      "https://res.cloudinary.com/dpavrdqdc/image/upload/v1763014860/Image_Sequence_002_0000_vwvek6.jpg",
+      "https://res.cloudinary.com/dpavrdqdc/image/upload/v1763014859/Image_Sequence_004_0000_b8u4h9.jpg",
+      "https://res.cloudinary.com/dpavrdqdc/image/upload/v1763014859/Image_Sequence_003_0000_s3e1kt.jpg",
+      "https://res.cloudinary.com/dpavrdqdc/image/upload/v1763014859/Image_Sequence_001_0000_zdress.jpg",
+    ],
+  },
+  {
+    id: 4,
+    title: "Find Difference",
+    description:
+      "A fun and challenging puzzle game where players spot differences between two similar images. Designed to enhance focus and observation skills with multiple levels, hints, and engaging visuals.",
+      category: "Puzzle/Casual",
+    video:
+      "https://res.cloudinary.com/dpavrdqdc/video/upload/v1763015143/Movie_003_htl7nw.mp4",
+    images: [
+      "https://res.cloudinary.com/dpavrdqdc/image/upload/v1763015127/Image_Sequence_001_0000_anjo1q.jpg",
+      "https://res.cloudinary.com/dpavrdqdc/image/upload/v1763015125/Image_Sequence_002_0000_rekscs.jpg",
+      "https://res.cloudinary.com/dpavrdqdc/image/upload/v1763015124/Image_Sequence_003_0000_hygthl.jpg",
+      "https://res.cloudinary.com/dpavrdqdc/image/upload/v1763015123/Image_Sequence_004_0000_roniil.jpg",
+      "https://res.cloudinary.com/dpavrdqdc/image/upload/v1763015120/Image_Sequence_006_0000_v9vjaf.jpg",
+      "https://res.cloudinary.com/dpavrdqdc/image/upload/v1763015120/Image_Sequence_005_0000_dwhfaf.jpg",
+      "https://res.cloudinary.com/dpavrdqdc/image/upload/v1763015120/Image_Sequence_007_0000_ybjjhz.jpg",
+      "https://res.cloudinary.com/dpavrdqdc/image/upload/v1763015119/Image_Sequence_008_0000_gtbixy.jpg",
+      "https://res.cloudinary.com/dpavrdqdc/image/upload/v1763015119/Image_Sequence_009_0002_j5knxx.jpg",
+      "https://res.cloudinary.com/dpavrdqdc/image/upload/v1763015119/Image_Sequence_009_0000_mbmqcd.jpg",
+      "https://res.cloudinary.com/dpavrdqdc/image/upload/v1763015119/Image_Sequence_010_0000_hpm86p.jpg",
+    ],
+  },
 ];

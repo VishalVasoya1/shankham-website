@@ -2,231 +2,49 @@
 import { useState } from "react";
 import {
   ArrowUpRight,
-  Sparkles,
-  Gamepad2,
-  Smartphone,
-  Server,
-  Palette,
-  Brain,
-  Github,
-  ExternalLink,
   Calendar,
-  Users,
-  LucideIcon,
   X,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
-import Link from "next/link";
-
-interface Project {
-  id: number;
-  title: string;
-  category: string;
-  description: string;
-  icon: LucideIcon;
-  tags: string[];
-  year: string;
-  fullDescription: string;
-  highlights: string[];
-  tech: string[];
-  team: string;
-  duration: string;
-  github: string;
-  demo: string;
-  color: string;
-}
+import {
+  Project,
+  projectsByCategory,
+  getAllProjects,
+  getCategories,
+} from "./data";
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "Neural Vision AI",
-      category: "AI/ML",
-      description:
-        "Computer vision platform for real-time object detection and classification",
-      icon: Brain,
-      tags: ["TensorFlow", "Python", "Computer Vision"],
-      year: "2024",
-      fullDescription:
-        "Neural Vision AI is a cutting-edge computer vision platform that leverages deep learning for real-time object detection, classification, and tracking. Built with scalability in mind, it processes thousands of video streams simultaneously with sub-100ms latency.",
-      highlights: [
-        "99.2% accuracy on custom datasets",
-        "Real-time processing at 60 FPS",
-        "Deployed across 50+ enterprise clients",
-        "Handles 10M+ daily predictions",
-      ],
-      tech: [
-        "TensorFlow 2.x",
-        "Python",
-        "OpenCV",
-        "FastAPI",
-        "Redis",
-        "PostgreSQL",
-      ],
-      team: "4 Engineers, 2 ML Researchers",
-      duration: "8 months",
-      github: "https://github.com",
-      demo: "https://demo.com",
-      color: "from-blue-500/10 to-purple-500/10",
-    },
-    {
-      id: 2,
-      title: "Nexus Gaming Engine",
-      category: "Game Development",
-      description:
-        "Cross-platform game engine with advanced physics and rendering capabilities",
-      icon: Gamepad2,
-      tags: ["Unity", "C#", "Multiplayer"],
-      year: "2024",
-      fullDescription:
-        "Nexus is a powerful game engine designed for indie developers and studios. It features a custom physics system, advanced lighting with ray tracing support, and seamless multiplayer networking.",
-      highlights: [
-        "Cross-platform support (PC, Console, Mobile)",
-        "Built-in multiplayer with 100+ concurrent players",
-        "Visual scripting + C# API",
-        "Asset marketplace integration",
-      ],
-      tech: [
-        "Unity",
-        "C#",
-        "HLSL",
-        "Photon",
-        "Mirror Networking",
-        "Cinemachine",
-      ],
-      team: "6 Engineers, 2 Designers",
-      duration: "14 months",
-      github: "https://github.com",
-      demo: "https://demo.com",
-      color: "from-green-500/10 to-emerald-500/10",
-    },
-    {
-      id: 3,
-      title: "CloudScale Infrastructure",
-      category: "DevOps",
-      description:
-        "Automated CI/CD pipeline with Kubernetes orchestration and monitoring",
-      icon: Server,
-      tags: ["Kubernetes", "Docker", "AWS"],
-      year: "2023",
-      fullDescription:
-        "CloudScale is an enterprise-grade infrastructure automation platform that streamlines deployment, scaling, and monitoring of containerized applications. It reduces deployment time by 85%.",
-      highlights: [
-        "Zero-downtime deployments",
-        "Auto-scaling based on custom metrics",
-        "Integrated security scanning",
-        "Multi-cloud support (AWS, GCP, Azure)",
-      ],
-      tech: [
-        "Kubernetes",
-        "Docker",
-        "Terraform",
-        "AWS EKS",
-        "Prometheus",
-        "Grafana",
-      ],
-      team: "5 DevOps Engineers",
-      duration: "6 months",
-      github: "https://github.com",
-      demo: "https://demo.com",
-      color: "from-orange-500/10 to-red-500/10",
-    },
-    {
-      id: 4,
-      title: "FinFlow Mobile",
-      category: "App Development",
-      description:
-        "Personal finance management app with AI-powered insights and budgeting",
-      icon: Smartphone,
-      tags: ["React Native", "TypeScript", "Firebase"],
-      year: "2024",
-      fullDescription:
-        "FinFlow revolutionizes personal finance with intelligent budgeting, automated expense tracking, and AI-powered financial insights. The app uses machine learning to predict spending patterns.",
-      highlights: [
-        "50K+ active users",
-        "4.8★ rating on App Store",
-        "Bank-level security encryption",
-        "AI insights with 92% accuracy",
-      ],
-      tech: [
-        "React Native",
-        "TypeScript",
-        "Firebase",
-        "Plaid API",
-        "TensorFlow Lite",
-        "Redux",
-      ],
-      team: "3 Developers, 1 Designer",
-      duration: "10 months",
-      github: "https://github.com",
-      demo: "https://demo.com",
-      color: "from-cyan-500/10 to-blue-500/10",
-    },
-    {
-      id: 5,
-      title: "Design System Pro",
-      category: "UI/UX",
-      description:
-        "Comprehensive design system with 200+ components and accessibility focus",
-      icon: Palette,
-      tags: ["Figma", "React", "Storybook"],
-      year: "2023",
-      fullDescription:
-        "A meticulously crafted design system that brings consistency and efficiency to product teams. With over 200 components, comprehensive documentation, and WCAG 2.1 AAA compliance.",
-      highlights: [
-        "200+ production-ready components",
-        "WCAG 2.1 AAA compliant",
-        "Adopted by 15+ product teams",
-        "90% reduction in design-dev handoff time",
-      ],
-      tech: [
-        "Figma",
-        "React",
-        "TypeScript",
-        "Storybook",
-        "Tailwind CSS",
-        "Radix UI",
-      ],
-      team: "2 Designers, 3 Developers",
-      duration: "12 months",
-      github: "https://github.com",
-      demo: "https://demo.com",
-      color: "from-pink-500/10 to-rose-500/10",
-    },
-    {
-      id: 6,
-      title: "Quantum Analytics",
-      category: "AI/ML",
-      description:
-        "Predictive analytics platform using machine learning for business intelligence",
-      icon: Sparkles,
-      tags: ["PyTorch", "FastAPI", "PostgreSQL"],
-      year: "2024",
-      fullDescription:
-        "Quantum Analytics transforms raw business data into actionable insights using advanced machine learning algorithms. It predicts trends, identifies anomalies, and provides real-time recommendations.",
-      highlights: [
-        "Processes 100M+ data points daily",
-        "23% average revenue increase for clients",
-        "Real-time anomaly detection",
-        "Natural language query interface",
-      ],
-      tech: [
-        "PyTorch",
-        "FastAPI",
-        "PostgreSQL",
-        "Apache Kafka",
-        "Redis",
-        "React",
-      ],
-      team: "5 ML Engineers, 2 Data Scientists",
-      duration: "9 months",
-      github: "https://github.com",
-      demo: "https://demo.com",
-      color: "from-violet-500/10 to-purple-500/10",
-    },
-  ];
+  // Get all categories with "All" option
+  const categories = ["All", ...getCategories()];
+
+  // Get filtered projects based on selected category
+  const filteredProjects =
+    selectedCategory === "All"
+      ? getAllProjects()
+      : projectsByCategory[selectedCategory] || [];
+
+  const nextImage = () => {
+    if (selectedProject?.images) {
+      setCurrentImageIndex(
+        (prev) => (prev + 1) % selectedProject?.images?.length!
+      );
+    }
+  };
+
+  const prevImage = () => {
+    if (selectedProject?.images) {
+      setCurrentImageIndex(
+        (prev) =>
+          (prev - 1 + selectedProject?.images?.length!) %
+          selectedProject?.images?.length!
+      );
+    }
+  };
 
   return (
     <div className="min-h-screen w-full bg-background">
@@ -247,16 +65,34 @@ const Projects = () => {
           </p>
         </div>
 
+        {/* Category Filters */}
+        <div className="flex flex-wrap gap-3 mb-12 justify-center">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`rounded-full px-6 py-2 transition-all duration-300 ${
+                selectedCategory === category
+                  ? "bg-foreground text-background"
+                  : "bg-transparent border border-border hover:border-foreground/50"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
         {/* Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-32">
-          {projects.map((project, index) => {
+          {filteredProjects.map((project) => {
             const Icon = project.icon;
             return (
               <div
                 key={project.id}
-                onClick={() => setSelectedProject(project)}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
+                onClick={() => {
+                  setSelectedProject(project);
+                  setCurrentImageIndex(0);
+                }}
                 className="group relative cursor-pointer h-full"
               >
                 {/* Gradient Background */}
@@ -314,19 +150,28 @@ const Projects = () => {
           })}
         </div>
 
+        {/* Show message if no projects found */}
+        {filteredProjects.length === 0 && (
+          <div className="text-center py-12 mb-32">
+            <p className="text-lg text-muted-foreground">
+              No projects found in the {selectedCategory} category.
+            </p>
+          </div>
+        )}
+
         {/* CTA */}
         <div className="text-center">
           <div className="inline-block space-y-8">
-            <h2 className={`text-4xl md:text-6xl font-light tracking-tight `}>
+            <h2 className="text-4xl md:text-6xl font-light tracking-tight">
               Have a project in mind?
             </h2>
-            <Link
+            <a
               href="/contact"
               className="group inline-flex items-center gap-3 px-8 py-4 border border-foreground rounded-full font-light tracking-wider uppercase text-sm transition-all duration-300 hover:bg-foreground hover:text-background"
             >
               Let's work together
               <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </Link>
+            </a>
           </div>
         </div>
       </div>
@@ -368,6 +213,51 @@ const Projects = () => {
                 </button>
               </div>
 
+              {/* Image Gallery */}
+              {selectedProject.images && selectedProject.images.length > 0 && (
+                <div className="relative aspect-video rounded-lg overflow-hidden bg-muted">
+                  <img
+                    src={selectedProject.images[currentImageIndex]}
+                    alt={`${selectedProject.title} screenshot ${
+                      currentImageIndex + 1
+                    }`}
+                    className="w-full h-full object-cover"
+                  />
+
+                  {selectedProject.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={prevImage}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-colors"
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={nextImage}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-colors"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+
+                      {/* Image indicators */}
+                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                        {selectedProject.images.map((_, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setCurrentImageIndex(idx)}
+                            className={`w-2 h-2 rounded-full transition-all ${
+                              idx === currentImageIndex
+                                ? "bg-foreground w-6"
+                                : "bg-foreground/30"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
+
               {/* Meta Info */}
               <div className="flex items-center gap-6 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
@@ -376,11 +266,6 @@ const Projects = () => {
                 </div>
                 <span>•</span>
                 <span>{selectedProject.duration}</span>
-                <span>•</span>
-                <div className="flex items-center gap-2">
-                  <Users className="w-4 h-4" />
-                  <span>{selectedProject.team}</span>
-                </div>
               </div>
 
               {/* Overview */}
@@ -400,9 +285,8 @@ const Projects = () => {
                   {selectedProject.highlights.map((highlight, i) => (
                     <div
                       key={i}
-                      className="flex items-start gap-3 p-4 border border-border rounded-lg"
+                      className="flex items-center gap-3 p-4 border border-border rounded-lg "
                     >
-                      <div className="w-1.5 h-1.5 rounded-full bg-foreground mt-2 flex-shrink-0" />
                       <span className="text-sm font-light leading-relaxed">
                         {highlight}
                       </span>
@@ -426,31 +310,6 @@ const Projects = () => {
                     </span>
                   ))}
                 </div>
-              </div>
-
-              {/* Actions */}
-              <div className="flex flex-wrap gap-3 pt-4">
-                <a
-                  href={selectedProject.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border font-light text-sm transition-all hover:bg-muted"
-                >
-                  <Github className="w-4 h-4" />
-                  View Code
-                  <ArrowUpRight className="w-4 h-4" />
-                </a>
-
-                <a
-                  href={selectedProject.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-foreground text-background font-light text-sm transition-all hover:opacity-90"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Live Demo
-                  <ArrowUpRight className="w-4 h-4" />
-                </a>
               </div>
             </div>
           </div>

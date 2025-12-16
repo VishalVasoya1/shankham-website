@@ -37,7 +37,6 @@ interface FormData {
 
 const Careers: React.FC = () => {
   const [selectedDepartment, setSelectedDepartment] = useState<string>("All");
-  const [selectedLocation, setSelectedLocation] = useState<string>("All");
   const [selectedPosition, setSelectedPosition] = useState<Position | null>(
     null
   );
@@ -56,49 +55,56 @@ const Careers: React.FC = () => {
     "All",
     "Engineering",
     "Design",
-    "Product",
-    "Marketing",
-    "Operations",
   ];
 
   const positions: Position[] = [
     {
       id: 1,
-      title: "Senior Full Stack Engineer",
+      title: "Data Scientist",
       department: "Engineering",
-      type: "Full-time",
-      experience: "5+ years",
-      description:
-        "Build scalable web applications using modern frameworks and cloud technologies.",
-    },
-    {
-      id: 2,
-      title: "Product Designer",
-      department: "Design",
       type: "Full-time",
       experience: "3+ years",
       description:
-        "Craft beautiful user experiences from concept to execution with cross-functional teams.",
+        "Work with large datasets to build predictive models and data-driven insights that power intelligent solutions.",
+    },
+    {
+      id: 2,
+      title: "Flutter Developer",
+      department: "Engineering",
+      type: "Full-time",
+      experience: "2+ years",
+      description:
+        "Develop cross-platform mobile applications using Flutter with seamless performance and UI consistency.",
     },
     {
       id: 3,
-      title: "Machine Learning Engineer",
+      title: "Full Stack Developer",
       department: "Engineering",
       type: "Full-time",
-      experience: "4+ years",
+      experience: "3+ years",
       description:
-        "Develop and deploy ML models at scale for our AI-powered products.",
+        "Design and develop robust web applications from front-end to back-end using modern frameworks and tools.",
     },
     {
       id: 4,
-      title: "Product Manager",
-      department: "Product",
+      title: "Game Developer",
+      department: "Engineering",
       type: "Full-time",
-      experience: "4+ years",
+      experience: "2+ years",
       description:
-        "Drive product strategy and execution for our flagship products.",
+        "Build immersive gaming experiences with Unity or Unreal Engine, collaborating closely with artists and designers.",
+    },
+    {
+      id: 5,
+      title: "UI Artist",
+      department: "Design",
+      type: "Full-time",
+      experience: "2+ years",
+      description:
+        "Create stunning, user-focused visual designs and in-game assets that elevate the player experience.",
     },
   ];
+
 
   const filteredPositions = positions.filter((position) => {
     const matchesDepartment =

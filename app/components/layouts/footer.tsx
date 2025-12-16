@@ -134,7 +134,7 @@ export default function Footer() {
             </div>
 
             {/* Contact Info */}
-            <div className="lg:col-span-4">
+            <div className="lg:col-span-4 ">
               <h3 className="font-semibold text-lg mb-6 relative inline-block">
                 Get in Touch
                 <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-primary-foreground/50" />

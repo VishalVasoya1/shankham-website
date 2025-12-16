@@ -139,4 +139,34 @@ body {
             transform: translateY(0);
         }
     }
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% - 2rem));
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(calc(-100% - 2rem));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 60s linear infinite;
+}
+
+.animate-scroll-right {
+  animation: scroll-right 60s linear infinite;
+}
+
+.pause-animation:hover .animate-scroll-left,
+.pause-animation:hover .animate-scroll-right {
+  animation-play-state: paused;
+}
 }
