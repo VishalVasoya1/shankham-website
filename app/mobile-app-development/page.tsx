@@ -9,6 +9,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { projectsByCategory } from "../projects/data";
+import { useRouter } from "next/navigation";
 
 export default function MobileAppDevelopment() {
   const features = [
@@ -24,6 +25,7 @@ export default function MobileAppDevelopment() {
 
   const [currentAppIndex, setCurrentAppIndex] = React.useState(0);
   const [api, setApi] = React.useState<any>(null);
+  const router = useRouter()
 
   const apps = projectsByCategory["App Development"].map((app) => ({
     ...app,
@@ -63,7 +65,7 @@ export default function MobileAppDevelopment() {
   }, [api]);
 
   const handleCTAClick = () => {
-    console.log("CTA button clicked - start app project flow");
+      router.push("/contact")
   };
 
   const currentApp = apps[currentAppIndex];

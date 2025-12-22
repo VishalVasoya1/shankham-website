@@ -1,21 +1,9 @@
 "use client";
-import React from "react";
 import {
-  Server,
-  Zap,
-  Shield,
-  Code,
   CheckCircle,
   ArrowRight,
-  Sparkles,
-  Database,
-  Cloud,
-  Lock,
-  Activity,
-  HardDrive,
-  Globe,
-  Workflow,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function BackendCloud() {
   const features = [
@@ -28,64 +16,10 @@ export default function BackendCloud() {
     "Load Balancing & Scaling",
     "Security & Compliance",
   ];
-
-  const stats = [
-    { value: "99.9%", label: "Uptime SLA" },
-    { value: "500M+", label: "API Requests/Month" },
-    { value: "100%", label: "Client Satisfaction" },
-    { value: "24/7", label: "Monitoring" },
-  ];
-
-  const capabilities = [
-    {
-      icon: Server,
-      title: "Scalable APIs",
-      description:
-        "Build robust, high-performance APIs that handle millions of requests. RESTful and GraphQL architectures optimized for speed.",
-    },
-    {
-      icon: Cloud,
-      title: "Cloud Infrastructure",
-      description:
-        "Expert deployment on AWS, Azure, and GCP. Infrastructure as Code with Terraform, automated scaling, and cost optimization.",
-    },
-    {
-      icon: Database,
-      title: "Database Excellence",
-      description:
-        "Optimized database design for SQL and NoSQL. Query optimization, indexing strategies, and seamless data migrations.",
-    },
-    {
-      icon: Shield,
-      title: "Security First",
-      description:
-        "Enterprise-grade security with encryption, authentication, and compliance. SOC 2, HIPAA, and GDPR ready infrastructure.",
-    },
-  ];
-
-  const process = [
-    {
-      number: "01",
-      title: "Architecture & Planning",
-      description:
-        "Designing scalable system architecture that meets your requirements. We define tech stack, database schema, and API contracts.",
-    },
-    {
-      number: "02",
-      title: "Development & Testing",
-      description:
-        "Building robust backend systems with comprehensive testing. Automated CI/CD pipelines ensure quality and rapid deployment.",
-    },
-    {
-      number: "03",
-      title: "Deploy & Monitor",
-      description:
-        "Production deployment with 24/7 monitoring and alerting. Continuous optimization for performance, security, and cost.",
-    },
-  ];
+  const router = useRouter()
 
   const handleCTAClick = () => {
-    console.log("CTA button clicked - start backend/cloud project flow");
+    router.push("/contact")
   };
 
 

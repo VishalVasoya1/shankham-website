@@ -7,6 +7,7 @@
     Palette,
     Brain,
     ArrowUpRight,
+    Layers,
   } from "lucide-react";
 
   const Services = () => {
@@ -17,7 +18,8 @@
         id: 1,
         title: "Game Development",
         icon: Gamepad2,
-        description: "Immersive gaming experiences with cutting-edge technology",
+        description:
+          "Immersive gaming experiences with cutting-edge technology",
         capabilities: [
           "Unity & Unreal Engine Development",
           "Cross-platform Mobile & Console Games",
@@ -43,7 +45,8 @@
         id: 3,
         title: "DevOps",
         icon: Server,
-        description: "Scalable infrastructure and automated deployment pipelines",
+        description:
+          "Scalable infrastructure and automated deployment pipelines",
         capabilities: [
           "CI/CD Pipeline Architecture",
           "Kubernetes & Docker Orchestration",
@@ -71,12 +74,26 @@
         icon: Brain,
         description: "Intelligent systems powered by machine learning and AI",
         capabilities: [
-          "Computer Vision & NLP",
+          "Computer Vision & NLP",    
           "Predictive Analytics",
           "Deep Learning Models",
           "AI Integration & Deployment",
         ],
         number: "05",
+      },
+      {
+        id: 6,
+        title: "Full Stack Development",
+        icon: Layers,
+        description:
+          "Scalable end-to-end web applications from frontend to backend",
+        capabilities: [
+          "React, Next.js & Modern Frontend Architecture",
+          "Node.js, Express & API Development",
+          "Database Design (MongoDB, PostgreSQL, SQL)",
+          "Authentication, RBAC & System Design",
+        ],
+        number: "06",
       },
     ];
 

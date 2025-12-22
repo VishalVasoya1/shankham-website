@@ -9,6 +9,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { games } from "./gamesData";
+import { useRouter } from "next/navigation";
 
 export default function GameDevelopment() {
   const features = [
@@ -24,6 +25,7 @@ export default function GameDevelopment() {
 
   const [currentGameIndex, setCurrentGameIndex] = React.useState(0);
   const [api, setApi] = React.useState<any>(null);
+  const router = useRouter()
 
   React.useEffect(() => {
     if (!api) return;
@@ -48,7 +50,7 @@ export default function GameDevelopment() {
   }, [api]);    
 
   const handleCTAClick = () => {
-    console.log("CTA button clicked - start game project flow");
+    router.push("/contact")
   };
 
   const currentGame = games[currentGameIndex];

@@ -4,8 +4,12 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { editorial_new } from "@/app/fonts";
+import { useRouter } from "next/navigation";
+import  { getCalApi } from "@calcom/embed-react";
+
 
 const HeroSection: React.FC = () => {
+  const router = useRouter()
   const words: string[] = [
     "ambitious teams",
     "visionary leaders",
@@ -54,6 +58,19 @@ const HeroSection: React.FC = () => {
     };
   }, []);
 
+    useEffect(() => {
+      (async function () {
+        const cal = await getCalApi({ namespace: "15min" });
+        cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
+      })();
+    }, []);
+  
+  
+
+  const handleClick = () => {
+     router.push("/contact")
+  }
+
   return (
     <div className="relative w-full h-screen flex flex-col items-center text-gray-100 justify-center px-4 sm:px-6 md:px-10 lg:px-16 overflow-hidden">
       <div
@@ -97,6 +114,7 @@ const HeroSection: React.FC = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 px-4">
           <Button
             size="lg"
+            onClick={handleClick}
             className="w-full text-zinc-900 sm:w-auto h-11 sm:h-12 px-6 sm:px-7 text-sm font-medium gap-2 group"
           >
             <span className="relative z-10 text-zinc-100">Start a Project</span>
@@ -107,6 +125,9 @@ const HeroSection: React.FC = () => {
             variant="outline"
             size="lg"
             className="w-full text-zinc-900 sm:w-auto h-11 sm:h-12 px-6 sm:px-7 text-sm font-medium gap-2 group"
+            data-cal-namespace="15min"
+            data-cal-link="tarang-rajpara-lgnt7r/15min"
+            data-cal-config='{"layout":"month_view"}'
           >
             <span>Book a Call</span>
           </Button>

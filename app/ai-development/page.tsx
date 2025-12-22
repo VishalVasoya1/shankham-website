@@ -14,6 +14,7 @@ import {
   Database,
   Target,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function AIDevelopment() {
   const features = [
@@ -27,63 +28,10 @@ export default function AIDevelopment() {
     "Data Pipeline Architecture",
   ];
 
-  const stats = [
-    { value: "150+", label: "AI Models Deployed" },
-    { value: "95%", label: "Accuracy Rate" },
-    { value: "100%", label: "Client Satisfaction" },
-    { value: "24/7", label: "Model Monitoring" },
-  ];
-
-  const capabilities = [
-    {
-      icon: Brain,
-      title: "Machine Learning",
-      description:
-        "Build intelligent systems that learn from data. From classification to regression, we create models that drive business value.",
-    },
-    {
-      icon: Network,
-      title: "Deep Learning",
-      description:
-        "Leverage neural networks for complex pattern recognition. Advanced architectures for image, text, and audio processing.",
-    },
-    {
-      icon: Shield,
-      title: "Ethical AI",
-      description:
-        "Responsible AI development with bias detection, fairness metrics, and transparent decision-making processes.",
-    },
-    {
-      icon: Zap,
-      title: "Real-time AI",
-      description:
-        "Low-latency inference pipelines optimized for production. Fast predictions without compromising accuracy.",
-    },
-  ];
-
-  const process = [
-    {
-      number: "01",
-      title: "Data & Discovery",
-      description:
-        "Understanding your data landscape and business objectives. We analyze datasets, identify patterns, and define success metrics.",
-    },
-    {
-      number: "02",
-      title: "Model Development",
-      description:
-        "Building and training custom AI models. Iterative experimentation with state-of-the-art algorithms and continuous validation.",
-    },
-    {
-      number: "03",
-      title: "Deploy & Scale",
-      description:
-        "Production-ready deployment with monitoring dashboards. Continuous learning and model refinement for optimal performance.",
-    },
-  ];
-
+  const router = useRouter()
+   
   const handleCTAClick = () => {
-    console.log("CTA button clicked - start AI project flow");
+    router.push("/contact")
   };
 
   return (

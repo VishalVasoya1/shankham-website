@@ -16,6 +16,7 @@ import {
   LineChart,
   Rocket,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function ResearchInnovation() {
   const features = [
@@ -28,6 +29,7 @@ export default function ResearchInnovation() {
     "Research Paper Publication",
     "Technology Transfer & Commercialization",
   ];
+  const router = useRouter();
 
   const stats = [
     { value: "150+", label: "Research Projects" },
@@ -85,10 +87,8 @@ export default function ResearchInnovation() {
   ];
 
   const handleCTAClick = () => {
-    console.log("CTA button clicked - start research project flow");
+    router.push("/contact");
   };
-
-
 
   return (
     <div className="min-h-screen bg-background">

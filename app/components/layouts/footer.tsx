@@ -12,6 +12,7 @@ import {
   Heart,
 } from "lucide-react";
 import Link from "next/link";
+import { Logo, TextLogo } from "./logo-icons";
 
 interface Service {
   title: string;
@@ -59,10 +60,7 @@ export default function Footer() {
             {/* Brand section */}
             <div className="lg:col-span-4">
               <div className="flex items-center gap-2 mb-6">
-                <div className="w-10 h-10 rounded-lg bg-primary-foreground/10 backdrop-blur-sm flex items-center justify-center border border-primary-foreground/20">
-                  <div className="w-6 h-6 rounded bg-primary-foreground/90" />
-                </div>
-                <span className="text-2xl font-bold">Shankham</span>
+                <TextLogo className="w-auto h-6" />
               </div>
               <p className="text-primary-foreground/80 mb-6 leading-relaxed">
                 Crafting exceptional digital experiences that drive growth and
@@ -178,7 +176,9 @@ export default function Footer() {
                       Location
                     </div>
                     <span className="text-primary-foreground">
-                      Surat, India
+                      {/* Surat, India */}
+                      233, Platinum point sudama chowk opp. CNG Pump. Mota
+                      Varachha, Surat, Gujarat.
                     </span>
                   </div>
                 </li>
@@ -189,12 +189,10 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-primary-foreground/10 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2 text-sm text-primary-foreground/60">
-              <span>
-                © {new Date().getFullYear()} Your Brand. All rights reserved.
-              </span>
-            </div>
+          <div className="flex items-center gap-2 text-sm text-primary-foreground/60 justify-center text-center">
+            <span>
+              © {new Date().getFullYear()} Your Brand. All rights reserved.
+            </span>
           </div>
           <div className="text-center mt-6 text-sm text-primary-foreground/60 flex items-center justify-center gap-1">
             Made with{" "}

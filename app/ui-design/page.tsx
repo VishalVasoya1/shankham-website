@@ -8,8 +8,11 @@ import {
   Layers,
   MousePointer,
 } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function UIUXDesign() {
+  const router = useRouter()
   const features = [
     "User Research & Analysis",
     "Wireframing & Prototyping",
@@ -22,8 +25,9 @@ export default function UIUXDesign() {
   ];
 
  
+
   const handleCTAClick = () => {
-    console.log("CTA button clicked - start UI/UX project flow");
+    router.push("/contact")
   };
 
         

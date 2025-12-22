@@ -194,10 +194,9 @@ const Contact = () => {
             >
               {isSubmitting ? "Sending..." : "Send Message"}
               <Send
-                className={`w-5 h-5 transition-transform duration-300 ${
-                  !isSubmitting &&
+                className={`w-5 h-5 transition-transform duration-300 ${!isSubmitting &&
                   "group-hover:translate-x-1 group-hover:-translate-y-1"
-                }`}
+                  }`}
               />
             </Button>
           </div>
@@ -242,7 +241,9 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-1">Visit Us</h3>
-                    <p className="font-medium"></p>
+                    <p className="font-medium">
+                      233, Platinum point sudama chowk opp. CNG Pump. Mota Varachha, Surat, Gujarat.
+                    </p>
                   </div>
                 </div>
               </div>

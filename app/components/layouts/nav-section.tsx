@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { TextLogo } from "./logo-icons";
 
 const NavSection = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,40 +36,37 @@ const NavSection = () => {
     <>
       {/* Desktop Navigation */}
       <nav
-        className={`hidden md:block fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          homePath
+        className={`hidden md:block fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${homePath
             ? isScrolled
               ? "bg-white/95 backdrop-blur-md shadow-sm"
               : "bg-transparent"
             : "bg-white/95 backdrop-blur-md shadow-sm"
-        }`}
+          }`}
       >
         <div className="mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <a href="/" className="flex items-center gap-2">
               <span
-                className={`text-2xl font-black ${
-                  homePath
+                className={`text-2xl font-black ${homePath
                     ? isScrolled
                       ? "text-black"
                       : "text-white"
                     : "text-black"
-                }`}
+                  }`}
               >
-                Shankham
+                <TextLogo className="w-auto h-6" />
               </span>
             </a>
 
             {/* Desktop Navigation */}
             <div
-              className={`flex items-center gap-8 p-2 px-4 rounded-full transition-colors duration-300 ${
-                homePath
+              className={`flex items-center gap-8 p-3 px-4 rounded-full transition-colors duration-300 ${homePath
                   ? isScrolled
                     ? "bg-gray-100"
                     : "bg-white/80 backdrop-blur-sm"
                   : "bg-gray-100"
-              }`}
+                }`}
             >
               {navLinks.map((link) => (
                 <a
@@ -78,9 +76,8 @@ const NavSection = () => {
                 >
                   {link.name}
                   <span
-                    className={`absolute bottom-0 left-0 h-0.5 bg-gray-800 transition-all duration-300 ease-out ${
-                      isActive(link.href) ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
+                    className={`absolute bottom-0 left-0 h-0.5 bg-gray-800 transition-all duration-300 ease-out ${isActive(link.href) ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
                   ></span>
                 </a>
               ))}
@@ -89,13 +86,12 @@ const NavSection = () => {
             {/* CTA Button */}
             <a
               href="/contact"
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-full transition-all duration-300 font-medium text-sm group ${
-                homePath
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-full transition-all duration-300 font-medium text-sm group ${homePath
                   ? isScrolled
                     ? "bg-primary text-zinc-100"
                     : "bg-secondary"
                   : "bg-zinc-800 text-zinc-100"
-              }`}
+                }`}
             >
               <span className="relative z-10">Let's Talk!</span>
               <svg
@@ -118,30 +114,28 @@ const NavSection = () => {
 
       {/* Mobile Navigation */}
       <div
-        className={`md:hidden fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          homePath
+        className={`md:hidden fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${homePath
             ? isScrolled
               ? "bg-white/95 backdrop-blur-md shadow-sm"
               : isOpen
-              ? "bg-white"
-              : "bg-transparent"
+                ? "bg-white"
+                : "bg-transparent"
             : "bg-white/95 backdrop-blur-md shadow-sm"
-        }`}
+          }`}
       >
         {/* Mobile Header */}
         <div className="px-6 py-4 flex items-center justify-between">
           {/* Logo */}
           <Link
             href="/"
-            className={`text-2xl font-black ${
-              homePath
+            className={`text-2xl font-black ${homePath
                 ? isScrolled
                   ? "text-black"
                   : isOpen
-                  ? "text-black"
-                  : "text-white"
+                    ? "text-black"
+                    : "text-white"
                 : "text-black"
-            }`}
+              }`}
           >
             Shankham
           </Link>
@@ -150,14 +144,13 @@ const NavSection = () => {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={`relative w-10 h-10 flex items-center justify-center transition-all duration-500 z-50 
-              ${
-                homePath
-                  ? isScrolled
-                    ? "text-black"
-                    : isOpen
+              ${homePath
+                ? isScrolled
+                  ? "text-black"
+                  : isOpen
                     ? "text-black"
                     : "text-white"
-                  : "text-black"
+                : "text-black"
               } `}
           >
             <div className="relative w-6 h-6">
@@ -179,9 +172,8 @@ const NavSection = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`block text-3xl font-bold transition-opacity duration-300 ${
-                    isActive(link.href) ? "underline" : ""
-                  }`}
+                  className={`block text-3xl font-bold transition-opacity duration-300 ${isActive(link.href) ? "underline" : ""
+                    }`}
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}

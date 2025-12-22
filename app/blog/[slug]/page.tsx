@@ -30,8 +30,8 @@ export default async function BlogPostPage({
   const { frontmatter, content } = post;
 
   return (
-    <div className="min-h-screen bg-background py-22">
-      <article className="max-w-[85rem] mx-auto px-6 lg:px-8">
+    <div className="min-h-screen bg-background my-24">
+      <article className="max-w-5xl mx-auto px-6 lg:px-8">
         {/* Header Section - Centered with proper spacing */}
         <header className="mb-20">
           <h1 className="text-5xl md:text-6xl font-bold mb-8 leading-[1.1] tracking-tight">

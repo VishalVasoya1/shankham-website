@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import {  Bricolage_Grotesque } from "next/font/google";
+import {  Roboto } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/layouts/footer";
 import NavSection from "./components/layouts/nav-section";
 
-const inter = Bricolage_Grotesque({
-  variable: "--font-bricolage-grotesque",
+const inter = Roboto({
+  variable: "--font-roboto",
   subsets: ["latin"],
 });
 

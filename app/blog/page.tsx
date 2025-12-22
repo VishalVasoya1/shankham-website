@@ -6,7 +6,7 @@ export default function BlogPage() {
   const posts: Post[] = getAllPosts();
 
   return (
-    <div className="max-w-[85rem] mx-auto py-22 min-h-screen">
+    <div className="max-w-5xl mx-auto py-22 min-h-screen">
       {/* Header */}
       <div className="mb-16">
         <div className="inline-block mb-3">
