@@ -1,0 +1,63 @@
+name: Deploy FE Admin Panel(DEV)
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy-fe:
+    runs-on: ubuntu-latest
+    environment: MAIN
+
+    steps:
+      - name: Checkout (workflow only)
+        uses: actions/checkout@v4
+
+      - name: Setup SSH to server
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Clone/Pull & Deploy FE on server
+        env:
+          APP_PATH: ${{ vars.APP_PATH }}
+          BRANCH: ${{ vars.BRANCH }}
+          REPO_SSH_URL: ${{ vars.REPO_SSH_URL }}
+          IMAGE_NAME: ${{ vars.IMAGE_NAME }}
+          VERSION: ${{ vars.VERSION }}
+          CONTAINER_NAME: ${{ vars.CONTAINER_NAME }}
+          APP_NETWORK_NAME: ${{ vars.APP_NETWORK_NAME }}
+          APP_SUBNET: ${{ vars.APP_SUBNET }}
+          APP_GATEWAY: ${{ vars.APP_GATEWAY }}
+          CONTAINER_PORT: ${{ vars.CONTAINER_PORT }}
+        run: |
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+            "APP_PATH='${APP_PATH}' BRANCH='${BRANCH}' REPO_SSH_URL='${REPO_SSH_URL}' \
+             IMAGE_NAME='${IMAGE_NAME}' VERSION='${VERSION}' CONTAINER_NAME='${CONTAINER_NAME}' APP_NETWORK_NAME='${APP_NETWORK_NAME}' APP_SUBNET='${APP_SUBNET}' APP_GATEWAY='${APP_GATEWAY}' CONTAINER_PORT='${CONTAINER_PORT}' \
+             bash -s" <<'EOSSH'
+          set -euo pipefail
+
+          # Trust GitHub host key on the server for git over SSH
+          mkdir -p ~/.ssh
+          ssh-keyscan -H github.com >> ~/.ssh/known_hosts 2>/dev/null || true
+
+          echo "📁 Ensure FE dir: $APP_PATH"
+          mkdir -p "$APP_PATH"
+
+          if [ ! -d "$APP_PATH/.git" ]; then
+            echo "⬇️  Cloning $REPO_SSH_URL (branch: $BRANCH)"
+            git clone -b "$BRANCH" "$REPO_SSH_URL" "$APP_PATH"
+          else
+            echo "🔄 Repo exists. Pull latest $BRANCH"
+            cd "$APP_PATH"
+            git remote set-url origin "$REPO_SSH_URL"
+            git fetch origin "$BRANCH"
+            git reset --hard "origin/$BRANCH"
+          fi
+
+          cd "$APP_PATH"
+          chmod +x deploy.sh
+          ./deploy.sh   # or ./deploy.sh --no-build
+          EOSSH
