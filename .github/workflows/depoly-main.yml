@@ -61,3 +61,4 @@ jobs:
           chmod +x deploy.sh
           ./deploy.sh   # or ./deploy.sh --no-build
           EOSSH
+          
