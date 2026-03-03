@@ -13,12 +13,19 @@ jobs:
       - name: Checkout (workflow only)
         uses: actions/checkout@v4
 
-      - name: Setup SSH to server
+      - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          echo "Host *" >> ~/.ssh/config
+          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+
+      - name: Test SSH Connection
+        run: |
+          ssh -i ~/.ssh/id_ed25519 \
+          ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+          "echo Connected successfully"
 
       - name: Clone/Pull & Deploy FE on server
         env:
@@ -61,4 +68,3 @@ jobs:
           chmod +x deploy.sh
           ./deploy.sh   # or ./deploy.sh --no-build
           EOSSH
-          
